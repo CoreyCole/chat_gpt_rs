@@ -29,13 +29,19 @@ impl RenderState {
         }
     }
 
-    pub fn add_msg(&'static self, msg_type: api::MsgType) {
+    pub fn send_msg(&'static self, msg_type: api::MsgType) {
         self.msgs.update(move |msgs| {
             msgs.push(api::Msg {
                 idx: msgs.len(),
                 id: msgs.len().to_string(),
                 msg_type,
             });
+        });
+    }
+
+    pub fn recv_msg(&'static self, msg: api::Msg) {
+        self.msgs.update(move |msgs| {
+            msgs.push(msg);
         });
     }
 }
