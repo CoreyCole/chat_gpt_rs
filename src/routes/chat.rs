@@ -7,7 +7,7 @@ fn send_chat(_cx: Scope, state: &'static state::RenderState, msg: String) {
     log::debug!("send_chat: {msg:?}");
     state.send_msg(api::MsgType::TextFromUser(msg.clone()));
     spawn_local(async {
-        match api::send_chat_server(msg).await {
+        match api::send_chat(msg).await {
             Err(e) => {
                 log::error!("Error sending chat: {e}");
             }

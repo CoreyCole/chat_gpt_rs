@@ -1,6 +1,9 @@
 # Leptos ChatGPT
 This example creates a basic clone of ChatGPT site. It showcases Leptos' ability to create both a client-side rendered app, and a server side rendered app with hydration, in a single repository.
 
+## Dev Setup
+- Ensure `OPEN_AI_KEY` environment variable is set
+
 ## Client Side Rendering
 To run it as a Client Side App, you can issue  `trunk serve --open` in the root. This will build the entire
 app into one CSR bundle. Make sure you have trunk installed with `cargo install trunk`.
