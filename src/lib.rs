@@ -1,5 +1,5 @@
 use cfg_if::cfg_if;
-use leptos::{component, view, IntoView, Scope, provide_context};
+use leptos::{component, provide_context, view, IntoView, Scope};
 use leptos_meta::*;
 use leptos_router::*;
 pub mod api;
@@ -10,7 +10,8 @@ mod state;
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
     provide_meta_context(cx);
-    let render_state: &'static state::RenderState = Box::leak(Box::new(state::RenderState::new(cx)));
+    let render_state: &'static state::RenderState =
+        Box::leak(Box::new(state::RenderState::new(cx)));
     provide_context::<&'static state::RenderState>(cx, render_state);
     view! {
         cx,

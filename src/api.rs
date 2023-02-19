@@ -1,6 +1,6 @@
-use leptos::{on_cleanup, Scope, Serializable, server, ServerFn, ServerFnError };
+use leptos::{server, ServerFn, ServerFnError};
 use serde::{Deserialize, Serialize};
-use std::env;
+// use std::env;
 
 #[cfg(feature = "ssr")]
 pub fn register_server_functions() {
@@ -10,7 +10,7 @@ pub fn register_server_functions() {
 /// handle function on the server side
 #[server(SendChat, "/api")]
 pub async fn send_chat_server(msg: String) -> Result<Msg, ServerFnError> {
-    let open_ai_key = env::var("OPEN_AI_KEY").expect("server must have OPEN_AI_KEY set");
+    // let open_ai_key = env::var("OPEN_AI_KEY").expect("server must have OPEN_AI_KEY set");
     // let client = openai_api::Client::new(&open_ai_key);
     // let args = openai_api::api::CompletionArgs::builder()
     //     .prompt(msg)

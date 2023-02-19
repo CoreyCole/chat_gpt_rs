@@ -1,5 +1,4 @@
 use cfg_if::cfg_if;
-use leptos::*;
 
 // boilerplate to run in different modes
 cfg_if! {
@@ -7,6 +6,7 @@ cfg_if! {
     if #[cfg(feature = "ssr")] {
         use actix_files::{Files};
         use actix_web::*;
+        use leptos::*;
         use leptos_actix::{generate_route_list, LeptosRoutes};
         use chat_gpt_rs::*;
 

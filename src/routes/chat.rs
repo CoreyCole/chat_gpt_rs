@@ -3,18 +3,18 @@ use leptos::*;
 use crate::api;
 use crate::state;
 
-fn send_chat(cx: Scope, state: &'static state::RenderState, msg: String) {
+fn send_chat(_cx: Scope, state: &'static state::RenderState, msg: String) {
     log::debug!("send_chat: {msg:?}");
     state.send_msg(api::MsgType::TextFromUser(msg.clone()));
     spawn_local(async {
         match api::send_chat_server(msg).await {
             Err(e) => {
                 log::error!("Error sending chat: {e}");
-            },
+            }
             Ok(msg) => {
                 log::info!("recv: {msg:?}");
                 state.recv_msg(msg);
-            },
+            }
         }
     })
 }
