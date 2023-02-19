@@ -3,9 +3,6 @@ use leptos::{component, view, IntoView, Scope, provide_context};
 use leptos_meta::*;
 use leptos_router::*;
 pub mod api;
-pub mod error_template;
-pub mod fallback;
-pub mod handlers;
 mod routes;
 use routes::chat::*;
 mod state;
@@ -35,14 +32,17 @@ pub fn App(cx: Scope) -> impl IntoView {
 // Needs to be in lib.rs AFAIK because wasm-bindgen needs us to be compiling a lib. I may be wrong.
 cfg_if! {
     if #[cfg(feature = "hydrate")] {
+        use leptos::*;
         use wasm_bindgen::prelude::wasm_bindgen;
 
         #[wasm_bindgen]
         pub fn hydrate() {
+            console_error_panic_hook::set_once();
             _ = console_log::init_with_level(log::Level::Debug);
             console_error_panic_hook::set_once();
-            leptos::mount_to_body(move |cx| {
-                view! { cx, <App/> }
+
+            mount_to_body(|cx| {
+                view! { cx,  <App/> }
             });
         }
     }
