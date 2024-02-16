@@ -32,8 +32,6 @@ pub async fn complete(prompt: String) -> Result<String, ServerFnError> {
         let error_body = response.text().await.map_err(|e| ServerFnError::ServerError(format!("Failed to read response body: {}", e)))?;
         return Ok(format!("Received error response ({}): {}", status_code, error_body));
     }
-
-    // Print the response body
     let response_body = response.text().await.unwrap();
     Ok(response_body)
 }
